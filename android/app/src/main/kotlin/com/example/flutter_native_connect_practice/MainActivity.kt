@@ -31,11 +31,6 @@ class MainActivity: FlutterActivity() {
         super.configureFlutterEngine(flutterEngine)
 
         channel = MethodChannel(flutterEngine.dartExecutor.binaryMessenger, BATTERY_CHANNEL)
-        channel.setMethodCallHandler{call, result ->
-            if(call.method == "getBatteryLevl"){
-                val arguments = call.arguments<Map<String, String>>() as Map<String, String>
-            }
-        }
         eventChannel = EventChannel(flutterEngine.dartExecutor.binaryMessenger, EVENT_CHANNEL)
 
         eventChannel.setStreamHandler(MyStreamHandler(context))
